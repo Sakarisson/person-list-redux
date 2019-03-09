@@ -4,26 +4,32 @@ import { connect } from 'react-redux';
 
 import PersonList from '../PersonList';
 import AddPeople from './AddPeople';
-import { addPerson } from '../../store/actions/personListActions';
+import { addPerson, removePerson } from '../../store/actions/personListActions';
 
-const Home = ({ personList, addPerson }) => (
+const Home = ({ personList, addPerson, removePerson }) => (
   <div>
     <AddPeople addPerson={addPerson} />
     {!!personList.people.length && (
       <Fragment>
         <p>People:</p>
-        <PersonList personList={personList} />
+        <PersonList people={personList.people} removePerson={removePerson} />
       </Fragment>
     )}
   </div>
 );
 
 Home.propTypes = {
-  personList: {
+  personList: PropTypes.shape({
     people: PropTypes.arrayOf(PropTypes.object).isRequired,
-  }.isRequired,
+  }).isRequired,
 };
 
-export default connect(store => ({
+export default connect(
+  store => ({
     personList: store.personList,
-  }), dispatch => ({ addPerson: person => dispatch(addPerson(person)) }))(Home);
+  }),
+  dispatch => ({
+    addPerson: person => dispatch(addPerson(person)),
+    removePerson: id => dispatch(removePerson(id)),
+  }),
+)(Home);

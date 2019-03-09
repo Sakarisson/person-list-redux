@@ -10,22 +10,17 @@ const PeopleContainer = styled.div`
   width: 50%;
 `;
 
-const PersonList = ({ personList }) => (
+const PersonList = ({ people, removePerson }) => (
   <PeopleContainer>
-    {personList.people.map(person => (
-      <PersonListElement
-        person={person}
-        remove={() => personList.removePerson(person.id)}
-        key={person.id}
-      />
+    {people.map(person => (
+      <PersonListElement person={person} remove={() => removePerson(person.id)} key={person.id} />
     ))}
   </PeopleContainer>
 );
 
 PersonList.propTypes = {
-  personList: PropTypes.shape({
-    people: PropTypes.arrayOf(PropTypes.object).isRequired,
-  }).isRequired,
+  people: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removePerson: PropTypes.func.isRequired,
 };
 
 export default PersonList;
