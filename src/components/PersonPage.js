@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import SortSelect from './SortSelect';
-import { sortOrderOptions, sortByOptions } from '../models/person';
 
 const FriendsContainer = styled.div`
   display: grid;
@@ -28,12 +27,12 @@ const SortFriendsByText = styled.div`
 
 const PersonPage = ({ person }) => (
   <div>
-    <p>{`${person.fullName}'s page`}</p>
+    <p>{`${person.firstName} ${person.lastName}'s page`}</p>
     <p>
       {person.firstName} lives at {person.address.streetAddress}, {person.address.zipCode},{' '}
       {person.address.city}
     </p>
-    <div>
+    {/* <div>
       {!!person.friends.length && (
         <Fragment>
           <SortFriendsByContainer>
@@ -64,24 +63,16 @@ const PersonPage = ({ person }) => (
           </FriendsContainer>
         </Fragment>
       )}
-    </div>
+    </div> */}
   </div>
 );
 
 PersonPage.propTypes = {
   person: PropTypes.shape({
-    fullName: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default compose(
-  // observer,
-  // withStateHandlers(({ person }) => ({
-  //   sortBy: person.friendsSortBy,
-  //   sortOrder: person.friendsSortOrder,
-  // }), {
-  //   setSortBy =
-  // }),
-  observer,
-)(PersonPage);
+export default PersonPage;
