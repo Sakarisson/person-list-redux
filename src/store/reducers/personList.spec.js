@@ -111,4 +111,14 @@ describe('personList reducer', () => {
     const expected = { people: [{ id: '1', sortBy: 'name' }, { id: '2', sortBy: 'none' }] };
     expect(personList(state, personListActions.setSortBy('1', 'name'))).toEqual(expected);
   });
+
+  it('should handle SET_SORT_ORDER', () => {
+    const state = {
+      people: [{ id: '1', sortOrder: 'ascending' }, { id: '2', sortOrder: 'ascending' }],
+    };
+    const expected = {
+      people: [{ id: '1', sortOrder: 'descending' }, { id: '2', sortOrder: 'ascending' }],
+    };
+    expect(personList(state, personListActions.setSortOrder('1', 'descending'))).toEqual(expected);
+  });
 });

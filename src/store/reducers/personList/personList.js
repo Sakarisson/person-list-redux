@@ -41,6 +41,14 @@ export default (state = baseState, action) => {
         ),
       };
 
+    case personListActionTypes.SET_SORT_ORDER:
+      return {
+        ...state,
+        people: state.people.map(p =>
+          p.id === action.personId ? { ...p, sortOrder: action.sortOrder } : p,
+        ),
+      };
+
     default:
       return state;
   }
