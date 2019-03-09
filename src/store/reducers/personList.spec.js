@@ -105,4 +105,10 @@ describe('personList reducer', () => {
       ],
     });
   });
+
+  it('should handle SET_SORT_BY', () => {
+    const state = { people: [{ id: '1', sortBy: 'none' }, { id: '2', sortBy: 'none' }] };
+    const expected = { people: [{ id: '1', sortBy: 'name' }, { id: '2', sortBy: 'none' }] };
+    expect(personList(state, personListActions.setSortBy('1', 'name'))).toEqual(expected);
+  });
 });
