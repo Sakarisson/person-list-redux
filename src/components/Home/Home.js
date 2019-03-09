@@ -25,8 +25,8 @@ Home.propTypes = {
 };
 
 export default connect(
-  store => ({
-    personList: store.personList,
+  state => ({
+    personList: state.personList,
   }),
   dispatch => ({
     addPerson: person => dispatch(addPerson(person)),
