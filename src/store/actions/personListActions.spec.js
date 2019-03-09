@@ -11,10 +11,10 @@ describe('personList actions', () => {
       friendsSortOrder: 'ascending',
       friends: ['2'],
     };
-    expect(actions.addPerson(person)).toEqual({ ...person, type: 'ADD_PERSON' });
+    expect(actions.addPerson(person)).toEqual({ ...person, type: 'PersonList/ADD_PERSON' });
   });
 
   it('removePerson should create REMOVE_PERSON action', () => {
-    expect(actions.removePerson('1')).toEqual({ id: '1', type: 'REMOVE_PERSON' });
+    expect(actions.removePerson('1')).toEqual({ id: '1', type: 'PersonList/REMOVE_PERSON' });
   });
 });
