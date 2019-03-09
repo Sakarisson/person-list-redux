@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 
 import PersonList from '../PersonList';
 import AddPeople from './AddPeople';
+import { addPerson } from '../../store/actions/personListActions';
 
-const Home = ({ personList }) => (
+const Home = ({ personList, addPerson }) => (
   <div>
-    <AddPeople personList={personList} />
+    <AddPeople addPerson={addPerson} />
     {!!personList.people.length && (
       <Fragment>
         <p>People:</p>
@@ -23,9 +24,6 @@ Home.propTypes = {
   }.isRequired,
 };
 
-export default connect(store => {
-  console.log(store.personList);
-  return {
+export default connect(store => ({
     personList: store.personList,
-  };
-})(Home);
+  }), dispatch => ({ addPerson: person => dispatch(addPerson(person)) }))(Home);
