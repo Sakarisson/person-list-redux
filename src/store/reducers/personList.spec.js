@@ -1,4 +1,5 @@
 import personList from './personList';
+import addFriend from './personList/addFriend';
 import * as personListActions from '../actions/personListActions';
 
 describe('personList reducer', () => {
@@ -65,6 +66,41 @@ describe('personList reducer', () => {
           address: { streetAddress: 'Somewhere 3', city: 'Porvoo', zipCode: '32323' },
           friendsSortBy: 'name',
           friendsSortOrder: 'descending',
+          friends: ['1'],
+        },
+      ],
+    });
+  });
+
+  it('should handle ADD_FRIEND', () => {
+    const state = {
+      people: [
+        {
+          id: '1',
+          friends: ['2'],
+        },
+        {
+          id: '2',
+          friends: ['1'],
+        },
+        {
+          id: '3',
+          friends: [],
+        },
+      ],
+    };
+    expect(addFriend(state, { personId: '1', friendId: '3' })).toEqual({
+      people: [
+        {
+          id: '1',
+          friends: ['2', '3'],
+        },
+        {
+          id: '2',
+          friends: ['1'],
+        },
+        {
+          id: '3',
           friends: ['1'],
         },
       ],

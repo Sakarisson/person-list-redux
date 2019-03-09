@@ -1,4 +1,6 @@
-import * as personListActionTypes from '../actionTypes/personListActionTypes';
+import * as personListActionTypes from '../../actionTypes/personListActionTypes';
+import * as personActionTypes from '../../actionTypes/personActionTypes';
+import addFriend from './addFriend';
 
 const baseState = {
   people: [],
@@ -28,6 +30,10 @@ export default (state = baseState, action) => {
         ...state,
         people: state.people.filter(person => person.id !== action.id),
       };
+
+    case personActionTypes.ADD_FRIEND:
+      return addFriend(state, action);
+
     default:
       return state;
   }
