@@ -16,9 +16,9 @@ export default (state = baseState, action) => {
             firstName: action.firstName,
             lastName: action.lastName,
             address: action.address,
-            friendsSortBy: action.friendsSortBy,
-            friendsSortOrder: action.friendsSortOrder,
-            friends: action.friends,
+            friendsSortBy: action.friendsSortBy || 'none',
+            friendsSortOrder: action.friendsSortOrder || 'ascending',
+            friends: action.friends || [],
           },
         ],
       };

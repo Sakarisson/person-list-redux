@@ -6,18 +6,32 @@ describe('personList reducer', () => {
     expect(personList(undefined, {})).toEqual({ people: [] });
   });
 
-  it('should handle ADD_PERSON', () => {
-    const person = {
-      id: '1',
-      firstName: 'Foo',
-      lastName: 'Bar',
-      address: { streetAddress: 'Homeplace 5', city: 'Helsinki', zipCode: '12321' },
-      friendsSortBy: 'none',
-      friendsSortOrder: 'ascending',
-      friends: ['2'],
-    };
-    expect(personList(undefined, personListActions.addPerson(person))).toEqual({
-      people: [person],
+  describe('ADD_PERSON', () => {
+    it('should handle ADD_PERSON with full information', () => {
+      const person = {
+        id: '1',
+        firstName: 'Foo',
+        lastName: 'Bar',
+        address: { streetAddress: 'Homeplace 5', city: 'Helsinki', zipCode: '12321' },
+        friendsSortBy: 'none',
+        friendsSortOrder: 'ascending',
+        friends: ['2'],
+      };
+      expect(personList(undefined, personListActions.addPerson(person))).toEqual({
+        people: [person],
+      });
+    });
+
+    it('should handle ADD_PERSON with incomplete information', () => {
+      const person = {
+        id: '1',
+        firstName: 'Foo',
+        lastName: 'Bar',
+        address: { streetAddress: 'Homeplace 5', city: 'Helsinki', zipCode: '12321' },
+      };
+      expect(personList(undefined, personListActions.addPerson(person))).toEqual({
+        people: [{ ...person, friendsSortBy: 'none', friendsSortOrder: 'ascending', friends: [] }],
+      });
     });
   });
 
