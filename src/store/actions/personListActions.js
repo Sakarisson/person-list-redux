@@ -15,3 +15,21 @@ export const removePerson = id => ({
   type: personListActionTypes.REMOVE_PERSON,
   id,
 });
+
+export const addFriend = (personId, friendId) => ({
+  type: personListActionTypes.ADD_FRIEND,
+  personId,
+  friendId,
+});
+
+export const setSortBy = (personId, sortBy) => ({
+  type: personListActionTypes.SET_SORT_BY,
+  personId,
+  sortBy,
+});
+
+export const setSortOrder = (personId, sortOrder) => ({
+  type: personListActionTypes.SET_SORT_ORDER,
+  personId,
+  sortOrder,
+});

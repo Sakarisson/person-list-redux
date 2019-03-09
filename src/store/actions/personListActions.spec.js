@@ -17,4 +17,28 @@ describe('personList actions', () => {
   it('removePerson should create REMOVE_PERSON action', () => {
     expect(actions.removePerson('1')).toEqual({ id: '1', type: 'PersonList/REMOVE_PERSON' });
   });
+
+  it('addFriend creates addFriend action', () => {
+    expect(actions.addFriend('1', '2')).toEqual({
+      type: 'Person/ADD_FRIEND',
+      personId: '1',
+      friendId: '2',
+    });
+  });
+
+  it('setSortBy creates setSortBy action', () => {
+    expect(actions.setSortBy('1', 'name')).toEqual({
+      type: 'Person/SET_SORT_BY',
+      personId: '1',
+      sortBy: 'name',
+    });
+  });
+
+  it('setSortOrder creates setSortOrder action', () => {
+    expect(actions.setSortOrder('1', 'descending')).toEqual({
+      type: 'Person/SET_SORT_ORDER',
+      personId: '1',
+      sortOrder: 'descending',
+    });
+  });
 });

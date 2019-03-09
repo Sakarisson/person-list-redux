@@ -1,5 +1,4 @@
 import personList from './personList';
-import addFriend from './personList/addFriend';
 import * as personListActions from '../actions/personListActions';
 
 describe('personList reducer', () => {
@@ -89,7 +88,7 @@ describe('personList reducer', () => {
         },
       ],
     };
-    expect(addFriend(state, { personId: '1', friendId: '3' })).toEqual({
+    expect(personList(state, personListActions.addFriend('1', '3'))).toEqual({
       people: [
         {
           id: '1',

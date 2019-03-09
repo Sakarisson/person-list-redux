@@ -1,5 +1,4 @@
 import * as personListActionTypes from '../../actionTypes/personListActionTypes';
-import * as personActionTypes from '../../actionTypes/personActionTypes';
 import addFriend from './addFriend';
 
 const baseState = {
@@ -31,7 +30,7 @@ export default (state = baseState, action) => {
         people: state.people.filter(person => person.id !== action.id),
       };
 
-    case personActionTypes.ADD_FRIEND:
+    case personListActionTypes.ADD_FRIEND:
       return addFriend(state, action);
 
     default:
