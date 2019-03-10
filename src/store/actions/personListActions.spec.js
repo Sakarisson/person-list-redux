@@ -20,7 +20,7 @@ describe('personList actions', () => {
 
   it('addFriend creates addFriend action', () => {
     expect(actions.addFriend('1', '2')).toEqual({
-      type: 'Person/ADD_FRIEND',
+      type: 'PersonList/ADD_FRIEND',
       personId: '1',
       friendId: '2',
     });
@@ -28,7 +28,7 @@ describe('personList actions', () => {
 
   it('setSortBy creates setSortBy action', () => {
     expect(actions.setSortBy('1', 'name')).toEqual({
-      type: 'Person/SET_SORT_BY',
+      type: 'PersonList/SET_SORT_BY',
       personId: '1',
       sortBy: 'name',
     });
@@ -36,7 +36,7 @@ describe('personList actions', () => {
 
   it('setSortOrder creates setSortOrder action', () => {
     expect(actions.setSortOrder('1', 'descending')).toEqual({
-      type: 'Person/SET_SORT_ORDER',
+      type: 'PersonList/SET_SORT_ORDER',
       personId: '1',
       sortOrder: 'descending',
     });
