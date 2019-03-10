@@ -35,7 +35,7 @@ export default (state = baseState, action) => {
       return {
         ...state,
         people: state.people.map(p =>
-          p.id === action.personId ? { ...p, sortBy: action.sortBy } : p,
+          p.id === action.personId ? { ...p, friendsSortBy: action.sortBy } : p,
         ),
       };
 
@@ -43,7 +43,7 @@ export default (state = baseState, action) => {
       return {
         ...state,
         people: state.people.map(p =>
-          p.id === action.personId ? { ...p, sortOrder: action.sortOrder } : p,
+          p.id === action.personId ? { ...p, friendsSortOrder: action.sortOrder } : p,
         ),
       };
 

@@ -131,17 +131,27 @@ describe('personList reducer', () => {
   });
 
   it('should handle SET_SORT_BY', () => {
-    const state = { people: [{ id: '1', sortBy: 'none' }, { id: '2', sortBy: 'none' }] };
-    const expected = { people: [{ id: '1', sortBy: 'name' }, { id: '2', sortBy: 'none' }] };
+    const state = {
+      people: [{ id: '1', friendsSortBy: 'none' }, { id: '2', friendsSortBy: 'none' }],
+    };
+    const expected = {
+      people: [{ id: '1', friendsSortBy: 'name' }, { id: '2', friendsSortBy: 'none' }],
+    };
     expect(personList(state, personListActions.setSortBy('1', 'name'))).toEqual(expected);
   });
 
   it('should handle SET_SORT_ORDER', () => {
     const state = {
-      people: [{ id: '1', sortOrder: 'ascending' }, { id: '2', sortOrder: 'ascending' }],
+      people: [
+        { id: '1', friendsSortOrder: 'ascending' },
+        { id: '2', friendsSortOrder: 'ascending' },
+      ],
     };
     const expected = {
-      people: [{ id: '1', sortOrder: 'descending' }, { id: '2', sortOrder: 'ascending' }],
+      people: [
+        { id: '1', friendsSortOrder: 'descending' },
+        { id: '2', friendsSortOrder: 'ascending' },
+      ],
     };
     expect(personList(state, personListActions.setSortOrder('1', 'descending'))).toEqual(expected);
   });
