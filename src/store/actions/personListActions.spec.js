@@ -41,4 +41,10 @@ describe('personList actions', () => {
       sortOrder: 'descending',
     });
   });
+
+  it('clearAllFriends creates clearAllFriends action', () => {
+    expect(actions.clearAllFriends()).toEqual({
+      type: 'PersonList/CLEAR_ALL_FRIENDS',
+    });
+  });
 });
