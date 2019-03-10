@@ -47,6 +47,12 @@ export default (state = baseState, action) => {
         ),
       };
 
+    case personListActionTypes.CLEAR_ALL_FRIENDS:
+      return {
+        ...state,
+        people: state.people.map(p => ({ ...p, friends: [] })),
+      };
+
     default:
       return state;
   }

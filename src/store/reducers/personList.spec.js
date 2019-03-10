@@ -145,4 +145,24 @@ describe('personList reducer', () => {
     };
     expect(personList(state, personListActions.setSortOrder('1', 'descending'))).toEqual(expected);
   });
+
+  it('should handle CLEAR_ALL_FRIENDS', () => {
+    const state = {
+      people: [
+        { id: '1', friends: ['2', '3'] },
+        { id: '2', friends: ['1'] },
+        { id: '3', friends: ['1', '4'] },
+        { id: '4', friends: ['3'] },
+      ],
+    };
+    const expected = {
+      people: [
+        { id: '1', friends: [] },
+        { id: '2', friends: [] },
+        { id: '3', friends: [] },
+        { id: '4', friends: [] },
+      ],
+    };
+    expect(personList(state, personListActions.clearAllFriends())).toEqual(expected);
+  });
 });
