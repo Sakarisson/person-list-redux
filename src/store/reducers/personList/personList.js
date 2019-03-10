@@ -1,5 +1,6 @@
 import * as personListActionTypes from '../../actionTypes/personListActionTypes';
 import addFriend from './addFriend';
+import removePerson from './removePerson';
 
 const baseState = {
   people: [],
@@ -25,10 +26,7 @@ export default (state = baseState, action) => {
       };
 
     case personListActionTypes.REMOVE_PERSON:
-      return {
-        ...state,
-        people: state.people.filter(person => person.id !== action.id),
-      };
+      return removePerson(state, action);
 
     case personListActionTypes.ADD_FRIEND:
       return addFriend(state, action);

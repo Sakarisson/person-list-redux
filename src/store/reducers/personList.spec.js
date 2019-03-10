@@ -35,39 +35,63 @@ describe('personList reducer', () => {
     });
   });
 
-  it('should handle REMOVE_PERSON', () => {
-    const people = [
-      {
-        id: '1',
-        firstName: 'Foo',
-        lastName: 'Bar',
-        address: { streetAddress: 'Homeplace 5', city: 'Helsinki', zipCode: '12321' },
-        friendsSortBy: 'none',
-        friendsSortOrder: 'ascending',
-        friends: ['2'],
-      },
-      {
-        id: '2',
-        firstName: 'Bar',
-        lastName: 'Foo',
-        address: { streetAddress: 'Somewhere 3', city: 'Porvoo', zipCode: '32323' },
-        friendsSortBy: 'name',
-        friendsSortOrder: 'descending',
-        friends: ['1'],
-      },
-    ];
-    expect(personList({ people }, personListActions.removePerson('1'))).toEqual({
-      people: [
+  describe('REMOVE_PERSON', () => {
+    it('should handle REMOVE_PERSON', () => {
+      const people = [
+        {
+          id: '1',
+          friends: [],
+        },
         {
           id: '2',
-          firstName: 'Bar',
-          lastName: 'Foo',
-          address: { streetAddress: 'Somewhere 3', city: 'Porvoo', zipCode: '32323' },
-          friendsSortBy: 'name',
-          friendsSortOrder: 'descending',
+          friends: [],
+        },
+      ];
+      expect(personList({ people }, personListActions.removePerson('1'))).toEqual({
+        people: [
+          {
+            id: '2',
+            friends: [],
+          },
+        ],
+      });
+    });
+
+    it('should remove that person from other lists of friends', () => {
+      const people = [
+        {
+          id: '1',
+          friends: ['2', '3'],
+        },
+        {
+          id: '2',
+          friends: ['1', '4'],
+        },
+        {
+          id: '3',
           friends: ['1'],
         },
-      ],
+        {
+          id: '4',
+          friends: ['2'],
+        },
+      ];
+      expect(personList({ people }, personListActions.removePerson('1'))).toEqual({
+        people: [
+          {
+            id: '2',
+            friends: ['4'],
+          },
+          {
+            id: '3',
+            friends: [],
+          },
+          {
+            id: '4',
+            friends: ['2'],
+          },
+        ],
+      });
     });
   });
 
