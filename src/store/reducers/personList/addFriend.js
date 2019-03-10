@@ -1,4 +1,4 @@
-const sortPeople = (a, b) => a.id > b.id;
+const sortPeople = (a, b) => parseInt(a.id, 10) > parseInt(b.id, 10);
 
 const addFriend = (state, action) => {
   const { personId, friendId } = action;
