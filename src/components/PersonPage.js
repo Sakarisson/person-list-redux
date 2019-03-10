@@ -2,8 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import SortSelect from './SortSelect';
+import getFriends from '../util/getFriends';
 
 const FriendsContainer = styled.div`
   display: grid;
@@ -25,15 +27,18 @@ const SortFriendsByText = styled.div`
   font-size: 14px;
 `;
 
-const PersonPage = ({ person }) => (
+const sortByOptions = ['none', 'name', 'city'];
+const sortOrderOptions = ['ascending', 'descending'];
+
+const PersonPage = ({ person, friends }) => (
   <div>
     <p>{`${person.firstName} ${person.lastName}'s page`}</p>
     <p>
       {person.firstName} lives at {person.address.streetAddress}, {person.address.zipCode},{' '}
       {person.address.city}
     </p>
-    {/* <div>
-      {!!person.friends.length && (
+    <div>
+      {!!friends.length && (
         <Fragment>
           <SortFriendsByContainer>
             <SortFriendsByText>Sort friends by:</SortFriendsByText>
@@ -63,16 +68,30 @@ const PersonPage = ({ person }) => (
           </FriendsContainer>
         </Fragment>
       )}
-    </div> */}
+    </div>
   </div>
 );
 
+const personProp = PropTypes.shape({
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  friendsSortBy: PropTypes.string.isRequired,
+  friendsSortOrder: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+});
+
 PersonPage.propTypes = {
-  person: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-  }).isRequired,
+  person: personProp.isRequired,
+  friends: PropTypes.arrayOf(personProp),
 };
 
-export default PersonPage;
+PersonPage.defaultProps = { friends: [] };
+
+export default connect((state, ownProps) => ({
+  friends: getFriends(
+    state,
+    ownProps.person.id,
+    ownProps.person.friendsSortBy,
+    ownProps.person.friendsSortOrder,
+  ),
+}))(PersonPage);
