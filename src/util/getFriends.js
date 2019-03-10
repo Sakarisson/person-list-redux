@@ -1,4 +1,6 @@
 const getFriends = (state, id) =>
-  state.people.find(p => p.id === id).friends.map(f => state.people.find(p => p.id === f));
+  state.personList.people
+    .find(p => p.id === id)
+    .friends.map(f => state.personList.people.find(p => p.id === f));
 
 export default getFriends;
