@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import SortSelect from './SortSelect';
 import getFriends from '../util/getFriends';
+import sortPeople from '../util/sortPeople';
 import {
   setPersonSortBy as setPersonSortByAction,
   setPersonSortOrder as setPersonSortOrderAction,
@@ -95,9 +96,8 @@ PersonPage.defaultProps = { friends: [] };
 
 export default connect(
   (state, ownProps) => ({
-    friends: getFriends(
-      state,
-      ownProps.person.id,
+    friends: sortPeople(
+      getFriends(state.personList.people, ownProps.person.id),
       ownProps.person.friendsSortBy,
       ownProps.person.friendsSortOrder,
     ),
