@@ -53,6 +53,18 @@ export default (state = baseState, action) => {
         people: state.people.map(p => ({ ...p, friends: [] })),
       };
 
+    case personListActionTypes.SET_SORT_BY:
+      return {
+        ...state,
+        sortBy: action.sortBy,
+      };
+
+    case personListActionTypes.SET_SORT_ORDER:
+      return {
+        ...state,
+        sortOrder: action.sortOrder,
+      };
+
     default:
       return state;
   }

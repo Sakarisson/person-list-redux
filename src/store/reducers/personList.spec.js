@@ -177,4 +177,34 @@ describe('personList reducer', () => {
     };
     expect(personList(state, personListActions.clearAllFriends())).toEqual(expected);
   });
+
+  it('handles SET_SORT_BY', () => {
+    expect(
+      personList(
+        {
+          people: [],
+          sortBy: 'none',
+        },
+        personListActions.setSortBy('name'),
+      ),
+    ).toEqual({
+      people: [],
+      sortBy: 'name',
+    });
+  });
+
+  it('handles SET_SORT_ORDER', () => {
+    expect(
+      personList(
+        {
+          people: [],
+          sortOrder: 'ascending',
+        },
+        personListActions.setSortOrder('descending'),
+      ),
+    ).toEqual({
+      people: [],
+      sortOrder: 'descending',
+    });
+  });
 });

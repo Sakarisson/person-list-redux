@@ -28,7 +28,7 @@ describe('personList actions', () => {
 
   it('setPersonSortBy creates setPersonSortBy action', () => {
     expect(actions.setPersonSortBy('1', 'name')).toEqual({
-      type: 'PersonList/SET_SORT_BY',
+      type: 'PersonList/SET_PERSON_SORT_BY',
       personId: '1',
       sortBy: 'name',
     });
@@ -36,7 +36,7 @@ describe('personList actions', () => {
 
   it('setPersonSortOrder creates setPersonSortOrder action', () => {
     expect(actions.setPersonSortOrder('1', 'descending')).toEqual({
-      type: 'PersonList/SET_SORT_ORDER',
+      type: 'PersonList/SET_PERSON_SORT_ORDER',
       personId: '1',
       sortOrder: 'descending',
     });
