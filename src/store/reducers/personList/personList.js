@@ -3,6 +3,8 @@ import addFriend from './addFriend';
 import removePerson from './removePerson';
 
 const baseState = {
+  sortBy: 'none',
+  sortOrder: 'ascending',
   people: [],
 };
 

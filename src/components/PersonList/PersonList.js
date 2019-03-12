@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import sortPeople from '../../util/sortPeople';
 import PersonListElement from './PersonListElement';
 
 const PeopleContainer = styled.div`
@@ -10,9 +11,9 @@ const PeopleContainer = styled.div`
   width: 50%;
 `;
 
-const PersonList = ({ people, removePerson }) => (
+const PersonList = ({ people, sortBy, sortOrder, removePerson }) => (
   <PeopleContainer>
-    {people.map(person => (
+    {sortPeople(people, sortBy, sortOrder).map(person => (
       <PersonListElement person={person} remove={() => removePerson(person.id)} key={person.id} />
     ))}
   </PeopleContainer>
@@ -21,6 +22,8 @@ const PersonList = ({ people, removePerson }) => (
 PersonList.propTypes = {
   people: PropTypes.arrayOf(PropTypes.object).isRequired,
   removePerson: PropTypes.func.isRequired,
+  sortBy: PropTypes.oneOf(['none', 'name', 'city']).isRequired,
+  sortOrder: PropTypes.oneOf(['ascending', 'descending']).isRequired,
 };
 
 export default PersonList;

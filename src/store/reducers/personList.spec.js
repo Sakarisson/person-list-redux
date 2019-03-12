@@ -3,7 +3,11 @@ import * as personListActions from '../actions/personListActions';
 
 describe('personList reducer', () => {
   it('should handle initial state', () => {
-    expect(personList(undefined, {})).toEqual({ people: [] });
+    expect(personList(undefined, {})).toEqual({
+      sortBy: 'none',
+      sortOrder: 'ascending',
+      people: [],
+    });
   });
 
   describe('ADD_PERSON', () => {
@@ -17,7 +21,7 @@ describe('personList reducer', () => {
         friendsSortOrder: 'ascending',
         friends: ['2'],
       };
-      expect(personList(undefined, personListActions.addPerson(person))).toEqual({
+      expect(personList(undefined, personListActions.addPerson(person))).toMatchObject({
         people: [person],
       });
     });
@@ -29,7 +33,7 @@ describe('personList reducer', () => {
         lastName: 'Bar',
         address: { streetAddress: 'Homeplace 5', city: 'Helsinki', zipCode: '12321' },
       };
-      expect(personList(undefined, personListActions.addPerson(person))).toEqual({
+      expect(personList(undefined, personListActions.addPerson(person))).toMatchObject({
         people: [{ ...person, friendsSortBy: 'none', friendsSortOrder: 'ascending', friends: [] }],
       });
     });
