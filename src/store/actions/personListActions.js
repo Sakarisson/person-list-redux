@@ -22,14 +22,14 @@ export const addFriend = (personId, friendId) => ({
   friendId,
 });
 
-export const setSortBy = (personId, sortBy) => ({
-  type: personListActionTypes.SET_SORT_BY,
+export const setPersonSortBy = (personId, sortBy) => ({
+  type: personListActionTypes.SET_PERSON_SORT_BY,
   personId,
   sortBy,
 });
 
-export const setSortOrder = (personId, sortOrder) => ({
-  type: personListActionTypes.SET_SORT_ORDER,
+export const setPersonSortOrder = (personId, sortOrder) => ({
+  type: personListActionTypes.SET_PERSON_SORT_ORDER,
   personId,
   sortOrder,
 });

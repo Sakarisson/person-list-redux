@@ -26,16 +26,16 @@ describe('personList actions', () => {
     });
   });
 
-  it('setSortBy creates setSortBy action', () => {
-    expect(actions.setSortBy('1', 'name')).toEqual({
+  it('setPersonSortBy creates setPersonSortBy action', () => {
+    expect(actions.setPersonSortBy('1', 'name')).toEqual({
       type: 'PersonList/SET_SORT_BY',
       personId: '1',
       sortBy: 'name',
     });
   });
 
-  it('setSortOrder creates setSortOrder action', () => {
-    expect(actions.setSortOrder('1', 'descending')).toEqual({
+  it('setPersonSortOrder creates setPersonSortOrder action', () => {
+    expect(actions.setPersonSortOrder('1', 'descending')).toEqual({
       type: 'PersonList/SET_SORT_ORDER',
       personId: '1',
       sortOrder: 'descending',

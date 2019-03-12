@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import SortSelect from './SortSelect';
 import getFriends from '../util/getFriends';
 import {
-  setSortBy as setSortByAction,
-  setSortOrder as setSortOrderAction,
+  setPersonSortBy as setPersonSortByAction,
+  setPersonSortOrder as setPersonSortOrderAction,
 } from '../store/actions/personListActions';
 
 const FriendsContainer = styled.div`
@@ -34,7 +34,7 @@ const SortFriendsByText = styled.div`
 const sortByOptions = ['none', 'name', 'city'];
 const sortOrderOptions = ['ascending', 'descending'];
 
-const PersonPage = ({ person, friends, setSortBy, setSortOrder }) => (
+const PersonPage = ({ person, friends, setPersonSortBy, setPersonSortOrder }) => (
   <div>
     <p>{`${person.firstName} ${person.lastName}'s page`}</p>
     <p>
@@ -49,7 +49,7 @@ const PersonPage = ({ person, friends, setSortBy, setSortOrder }) => (
             <SortSelect
               values={sortByOptions.map(option => ({ key: option, name: option }))}
               selected={person.friendsSortBy}
-              onChange={e => setSortBy(e.target.value)}
+              onChange={e => setPersonSortBy(e.target.value)}
             />
           </SortFriendsByContainer>
           <SortFriendsByContainer>
@@ -57,7 +57,7 @@ const PersonPage = ({ person, friends, setSortBy, setSortOrder }) => (
             <SortSelect
               values={sortOrderOptions.map(option => ({ key: option, name: option }))}
               selected={person.friendsSortOrder}
-              onChange={e => setSortOrder(e.target.value)}
+              onChange={e => setPersonSortOrder(e.target.value)}
             />
           </SortFriendsByContainer>
           <FriendsContainer>
@@ -87,8 +87,8 @@ const personProp = PropTypes.shape({
 PersonPage.propTypes = {
   person: personProp.isRequired,
   friends: PropTypes.arrayOf(personProp),
-  setSortBy: PropTypes.func.isRequired,
-  setSortOrder: PropTypes.func.isRequired,
+  setPersonSortBy: PropTypes.func.isRequired,
+  setPersonSortOrder: PropTypes.func.isRequired,
 };
 
 PersonPage.defaultProps = { friends: [] };
@@ -103,7 +103,8 @@ export default connect(
     ),
   }),
   (dispatch, ownProps) => ({
-    setSortBy: sortBy => dispatch(setSortByAction(ownProps.person.id, sortBy)),
-    setSortOrder: sortOrder => dispatch(setSortOrderAction(ownProps.person.id, sortOrder)),
+    setPersonSortBy: sortBy => dispatch(setPersonSortByAction(ownProps.person.id, sortBy)),
+    setPersonSortOrder: sortOrder =>
+      dispatch(setPersonSortOrderAction(ownProps.person.id, sortOrder)),
   }),
 )(PersonPage);

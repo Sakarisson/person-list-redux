@@ -137,7 +137,7 @@ describe('personList reducer', () => {
     const expected = {
       people: [{ id: '1', friendsSortBy: 'name' }, { id: '2', friendsSortBy: 'none' }],
     };
-    expect(personList(state, personListActions.setSortBy('1', 'name'))).toEqual(expected);
+    expect(personList(state, personListActions.setPersonSortBy('1', 'name'))).toEqual(expected);
   });
 
   it('should handle SET_SORT_ORDER', () => {
@@ -153,7 +153,9 @@ describe('personList reducer', () => {
         { id: '2', friendsSortOrder: 'ascending' },
       ],
     };
-    expect(personList(state, personListActions.setSortOrder('1', 'descending'))).toEqual(expected);
+    expect(personList(state, personListActions.setPersonSortOrder('1', 'descending'))).toEqual(
+      expected,
+    );
   });
 
   it('should handle CLEAR_ALL_FRIENDS', () => {

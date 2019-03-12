@@ -31,7 +31,7 @@ export default (state = baseState, action) => {
     case personListActionTypes.ADD_FRIEND:
       return addFriend(state, action);
 
-    case personListActionTypes.SET_SORT_BY:
+    case personListActionTypes.SET_PERSON_SORT_BY:
       return {
         ...state,
         people: state.people.map(p =>
@@ -39,7 +39,7 @@ export default (state = baseState, action) => {
         ),
       };
 
-    case personListActionTypes.SET_SORT_ORDER:
+    case personListActionTypes.SET_PERSON_SORT_ORDER:
       return {
         ...state,
         people: state.people.map(p =>
