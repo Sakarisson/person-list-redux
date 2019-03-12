@@ -47,4 +47,18 @@ describe('personList actions', () => {
       type: 'PersonList/CLEAR_ALL_FRIENDS',
     });
   });
+
+  it('setSortBy creates setSortBy action', () => {
+    expect(actions.setSortBy('name')).toEqual({
+      type: 'PersonList/SET_SORT_BY',
+      sortBy: 'name',
+    });
+  });
+
+  it('setSortOrder creates setSortOrder action', () => {
+    expect(actions.setSortOrder('descending')).toEqual({
+      type: 'PersonList/SET_SORT_ORDER',
+      sortOrder: 'descending',
+    });
+  });
 });

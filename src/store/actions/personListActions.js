@@ -37,3 +37,13 @@ export const setPersonSortOrder = (personId, sortOrder) => ({
 export const clearAllFriends = () => ({
   type: personListActionTypes.CLEAR_ALL_FRIENDS,
 });
+
+export const setSortBy = sortBy => ({
+  type: personListActionTypes.SET_SORT_BY,
+  sortBy,
+});
+
+export const setSortOrder = sortOrder => ({
+  type: personListActionTypes.SET_SORT_ORDER,
+  sortOrder,
+});
